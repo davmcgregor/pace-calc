@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { DISTANCES } from '@/app/constants/distances';
+
 import styles from './Calculator.module.css';
 
 const Calculator = () => {
@@ -12,13 +14,19 @@ const Calculator = () => {
     // Calculate pace logic here
   };
 
+  const reset = () => {
+    setDistance('');
+    setSpeed(''); 
+  };
+
   return (
-    <div className={styles.calculatorContainer}>
+    <form className={styles.form}>
       <select onChange={(e) => setDistance(e.target.value)} value={distance}>
-        {/* Populate with options for distances */}
-        <option value="5">5 km</option>
-        <option value="10">10 km</option>
-        {/* ... other distances */}
+        {DISTANCES.map((distance) => (
+          <option key={distance} value={distance}>
+            {distance}
+          </option>
+        ))}
       </select>
       <input 
         type="number" 
@@ -26,9 +34,21 @@ const Calculator = () => {
         onChange={(e) => setSpeed(e.target.value)} 
         placeholder="Enter speed (km/h)" 
       />
-      <button onClick={calculatePace}>Calculate Pace</button>
+      <div className={styles.submitSection}>
+        <button
+          onClick={calculatePace}
+          type="submit"
+        >
+          Calculate Pace
+        </button>
+        <button
+          onClick={reset}
+        >
+          Reset
+        </button>
+      </div>
       {/* Display result */}
-    </div>
+    </form>
   );
 };
 
