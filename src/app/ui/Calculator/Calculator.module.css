@@ -1,0 +1,9 @@
+.calculatorContainer {
+  border-radius: 0.5rem;
+  width: 80%;
+  max-width: 400px; /* Adjust based on your preference */
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Just for some styling */
+  background: white;
+}
